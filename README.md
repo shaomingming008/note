@@ -68,8 +68,83 @@
 - JavaScript原型，原型链 ? 有什么特点
 - 什么是事件代理
 - Javascript如何实现继承
+> 原型链继承(将父类的实例作为子类的原型)
+```
+function Cat(){ 
+}
+Cat.prototype = new Animal();
+Cat.prototype.name = 'cat';
+//　Test Code
+var cat = new Cat();
+```
+> 构造继承(使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）)
+```
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+// Test Code
+var cat = new Cat();
+```
+> 组合继承(通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用)
+```
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+Cat.prototype = new Animal();
+Cat.prototype.constructor = Cat;
+// Test Code
+var cat = new Cat();
+```
+> 寄生组合继承(通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点)
+```
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+(function(){
+  // 创建一个没有实例方法的类
+  var Super = function(){};
+  Super.prototype = Animal.prototype;
+  //将实例作为子类的原型
+  Cat.prototype = new Super();
+})();
+// Test Code
+var cat = new Cat();
+```
 - 谈谈this的理解
+> this是在运行时绑定，而不是在编写时绑定，this实际值取决于函数调用时的上下文。this的绑定和函数声明的位置没有关系，只取决于函数的调用方式。在JavaScript中，当函数被调用时，会创建一个活动记录（执行时上下文），这个记录包含函数在何处调用、函数的调用方法和传入参数等信息，this会记录其中一个属性。判断this实际绑定值，关键在于分析函数实际调用的位置
+> new绑定
+
+> 隐式绑定(当对象内部包含一个指向函数的属性，并且在调用时通过这个属性间接引用函数（obj.prop()的形式），那么函数内的this会隐式指向这个对象，也即隐式绑定)
+```
+function foo() {
+    console.log(this.a);
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+obj.foo();  //  2
+```
+> 显示绑定(在某些情况下，我们希望函数内的this绑定在某些指定的对象上，这称为显示绑定。在JavaScript中可以使用call和apply为函数显示指定this绑定。call和apply的第一个参数是一个对象，这个对象会被绑定到this上)
+```
+function foo() {
+    console.log(this.a);
+}
+
+var obj = {
+　　a:2
+};
+
+foo.call(obj);  //  2
+```
+> 默认绑定(使用默认绑定规则，this被绑定到全局对象上。在strict模式下，this会绑定到undefined)
 - Ajax原理
+> 简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面
 - 什么是同源策略，如何解决跨域问题
 - 谈谈你对webpack的看法
 > WebPack 是一个模块打包工具，你可以使用WebPack管理你的模块依赖，并编绎输出模块们所需的静态文件。
