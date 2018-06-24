@@ -55,6 +55,8 @@
 - 解释下盒模型
 - 怎么理解BFC
 - 清除浮动的方式(overflow:hidden的原理)
+> 在父元素里设置某个子元素浮动。浮动后，子元素脱离了文档流，使得父元素无法包住这个浮动的子元素
+> <span color='red'>BFC可以包含浮动</span>这一特性来清除浮动,而overflow:hidden可以触发一个BFC
 - css3有哪些新特性
 - 垂直居中的几种实现方式
 - transition 动画 animation 的参数和区别
