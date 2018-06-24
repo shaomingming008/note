@@ -76,7 +76,44 @@
 >
 - CMD和AMD的区别
 - 前端常用的设计模式
-- Promise的原理，怎么用ajax实现一个promise
+- Promise的原理，怎么简单的实现一个promise
+> Promise 概括来说是对异步的执行结果的描述对象,是js异步的解决方案，通常用于ajax请求
+> promise 的3种状态pending、fullfilled、rejected
+> 1、Promise 构造器中必须传入函数，否则会抛出错误。(没有执行器还怎么做异步操作。。。)
+>
+> 2、Promise.prototype上的 catch(onrejected) 方法是 then(null,onrejected) 的别名,并且会处理链之前的任何的reject
+>
+> 3、Promise.prototype 上的 then和 catch 方法总会返回一个全新的 Promise 对象
+>
+> 4、如果传入构造器的函数中抛出了错误,该 promise 对象的[[PromiseStatus]]会赋值为 rejected，并且[[PromiseValue]]赋值为 Error 对象
+>
+> 5、then 中的回调如果抛出错误，返回的 promise 对象的[[PromiseStatus]]会赋值为 rejected，并且[[PromiseValue]]赋值为 Error 对象
+>
+> 6、then 中的回调返回值会影响 then 返回的 promise 对象
+>
+```
+function Promise(executor) {
+    // 容器，存放then订阅的东西
+    this._deferreds = []
+    var _this = this
+    // 承诺被执行
+    function resolve(stuff) {
+        // 取出存的东西
+        _this._deferreds.forEach(function (deferred) {
+            // 执行
+            deferred(stuff)
+        })
+    }
+    // Promise传入的函数，执行时将resolve传进去
+    executor(resolve)
+}
+
+Promise.prototype.then = function (onFulfilled) {
+    // 往里面放东西
+    this._deferreds.push(onFulfilled)
+}
+```
+
 - 同步和异步的区别
 - es6的新特效
 - var、let、const区别
