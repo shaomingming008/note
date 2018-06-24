@@ -150,6 +150,24 @@ Promise.prototype.then = function (onFulfilled) {
 - 冒泡排序、快速排序
 - 写一个正则表达式，长度6-8位，必须数字字母混合并且首字母大写
 - 写一个通用的事件侦听器函数
+- 数组降维
+```
+function deepFlatten(arr){
+    return arr.reduce((r,v) => {
+       return r.concat(Array.isArray(v) ? deepFlatten(v) : v)
+    },[] )
+}
+```
+- 深拷贝
+```
+function deepClone(obj){
+  let clone = Object.assign({}, obj);
+  Object.keys(clone).forEach(
+    key => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
+  );
+  return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
+};
+```
 
 ## 开放篇
 
