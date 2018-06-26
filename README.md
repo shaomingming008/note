@@ -228,6 +228,10 @@ Promise.prototype.then = function (onFulfilled) {
 - webpack的优化措施
 - webpack中loader和plugin的区别
 - 如何实现一个观察订阅模式
+- react的高阶函数和高阶组件
+> 高阶函数的定义：接收函数作为输入，或者输出另一个函数的一类函数，被称作高阶函数。对于高阶组件，它描述的便是接受React组件作为输入，输出一个新的React组件的组件。
+
+> 更通俗地描述为，高阶组件通过包裹（wrapped）被传入的React组件，经过一系列处理，最终返回一个相对增强（enhanced）的React组件，供其他组件调用。
 
 ## 笔试篇
 
