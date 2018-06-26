@@ -216,6 +216,13 @@ Promise.prototype.then = function (onFulfilled) {
 - 求一个节点的索引（react中怎么做）
 - 如何合并两个对象
 - 是否了解Web注入攻击，说下原理，最常见的两种攻击（XSS 和CSRF）
+- promise.all和promise.race的理解
+> Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值
+
+> Promse.race就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
+
+> Promise.race()的作用：
+用于和定时器绑定，可以测试一些接口的响应速度，分析用户的网络状况之类的，，比如将一个请求，和三秒后执行定时器 包装成promise 实例，然后加入 promise.race队列中， 当请求三秒还未响应时候，可以给用户一些提示， 或者是一些其他操作。
 
 ## 框架篇
 
