@@ -64,6 +64,15 @@
 
 ## js篇
 
+- js基础数据类型
+> 基本数据类型：undefined，null，boolean，number和string；
+
+> 引用类型数据：Object，Array，Function，Date等（其都是对象）。
+
+> typeof 操作符操作后会有Number、string、Boolean、Undefined、Object、Function
+
+> es6引出了Symbol类型的数据，其表示独一无二的值
+
 - 什么是闭包，闭包的使用场景
 > 有权访问另一个函数作用域内变量的函数都是闭包
 
