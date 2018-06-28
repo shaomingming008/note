@@ -256,6 +256,8 @@ Promise.prototype.then = function (onFulfilled) {
 - webpack的优化措施
 - webpack中loader和plugin的区别
 - 如何实现一个观察订阅模式
+- react diff机制
+> React使用简单强大的启发式算法使其时间复杂度接近 O(n).React只会尝试一级一级去比价树，这样能显著减少其复杂性而且这不是一个损失，因为在web里极少有组件被移到树中不同的级别去，他们通常在子级中横向移动。
 - react的高阶函数和高阶组件
 > 高阶函数的定义：接收函数作为输入，或者输出另一个函数的一类函数，被称作高阶函数。对于高阶组件，它描述的便是接受React组件作为输入，输出一个新的React组件的组件。
 
