@@ -229,7 +229,16 @@ Promise.prototype.then = function (onFulfilled) {
     this._deferreds.push(onFulfilled)
 }
 ```
-
+- js中造成内存泄漏的操作
+> 1）意外的全局变量引起的内存泄露
+>
+> 2）闭包引起的内存泄露
+>
+> 3）没有清理的DOM元素引用
+>
+> 4）被遗忘的定时器或者回调
+>
+> 5）IE7/8引用计数使用循环引用产生的问题
 - 同步和异步的区别
 - es6的新特效
 - var、let、const区别
