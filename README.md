@@ -259,6 +259,24 @@ Promise.prototype.then = function (onFulfilled) {
 - props和state的区别
 - redux的原理
 - router的原理
+- redux-sage
+> Sage是一个可以用来处理复杂的异步逻辑的模块，并且由redux的action触发。
+>
+> 主要目的用来实现前端分层，react展现数据，redux管理数据状态，saga用来业务逻辑处理 
+> 
+> 在主要作用（action触发reducer）之外，用来处理其他业务逻辑。redux-saga提供了几种产生副作用的方式, 主要用到了有两种takeEvery和takeLates
+> 
+> takeLatest在相同的action被触发多次的时候，之前的副作用如果没有执行完，会被取消掉，只有最后一次action触发的副作用可以执行完。比如，我们需要一个刷新按钮， 让用户可以手动的从后台刷新数据， 当用户不停单机刷新的时候， 应该最新一次的请求数据被刷新在页面上，这里可以使用takeLatest
+>
+> saga弊端
+>
+> 1、redux-saga模型的理解和学习需要投入很多精力
+>
+> 2、因为需要用action触发，所以会产生很多对于reducer无用的action, 但是reducer一样会跑一轮，虽然目前没有观测到性能下降，但还是有计算开销
+>
+> 3、在action的定义上要谨慎，避免action在saga和reducer之间重复触发，造成死循环
+>
+
 - 如何做ssr
 - webpack的优化措施
 - webpack中loader和plugin的区别
