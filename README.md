@@ -312,6 +312,25 @@ dedupe([1,1,2,3,'1']) //[1,2,3]
 - 冒泡排序、快速排序
 - 写一个正则表达式，长度6-8位，必须数字字母混合并且首字母大写
 - 写一个通用的事件侦听器函数
+```
+/* 
+ * addEventListener:监听Dom元素的事件 
+ * 
+ * target：监听对象 
+ * type：监听函数类型，如click,mouseover 
+ * func：监听函数 
+ */
+function addEventHandler(target,type,func){ 
+ if(target.addEventListener){ 
+  //监听IE9，谷歌和火狐 
+  target.addEventListener(type, func, false); 
+ }else if(target.attachEvent){ 
+  target.attachEvent("on" + type, func); 
+ }else{ 
+  target["on" + type] = func; 
+ } 
+} 
+```
 - 数组降维
 ```
 function deepFlatten(arr){
