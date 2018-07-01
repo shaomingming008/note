@@ -302,6 +302,12 @@ Promise.prototype.then = function (onFulfilled) {
 ## 笔试篇
 
 - 数组去重降序排序
+```
+function dedupe(array){
+ return Array.from(new Set(array));
+}
+dedupe([1,1,2,3,'1']) //[1,2,3]
+```
 - 判断一个对象是否为数组
 - 冒泡排序、快速排序
 - 写一个正则表达式，长度6-8位，必须数字字母混合并且首字母大写
